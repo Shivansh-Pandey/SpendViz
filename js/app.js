@@ -294,10 +294,16 @@ function renderList() {
 
 function renderPresets() {
   const grid = document.getElementById("presets-grid");
-  if (!grid) return;
+  console.log("renderPresets called, grid element:", grid);
+  
+  if (!grid) {
+    console.error("presets-grid element not found!");
+    return;
+  }
 
   // full list is overwhelming, just show common ones here
   const popular = presets.filter(p => p.popular);
+  console.log("Popular presets found:", popular.length, popular);
 
   let html = "";
   for (let i = 0; i < popular.length; i++) {
@@ -311,7 +317,28 @@ function renderPresets() {
     html += '<span class="text-[10px] font-semibold text-slate-600 truncate w-full text-center sm:text-xs">' + preset.name + '</span>';
     html += '</button>';
   }
+  
+  console.log("Setting grid innerHTML, html length:", html.length);
   grid.innerHTML = html;
+  console.log("Grid updated successfully");
+}
+
+function addSub(evt) {
+  evt.preventDefault();
+
+  const subData = {
+    id: Date.now().toString() + Math.random().toString(36).slice(2),
+    name: document.getElementById("sub-name").value,
+    price: parseFloat(document.getElementById("sub-cost").value),
+    currency: selectedCurrency,
+    cycle: document.getElementById("sub-period").value.charAt(0).toUpperCase() + document.getElementById("sub-period").value.slice(1),
+    url: document.getElementById("sub-website").value || "",
+    color: randColor().id
+  };
+
+  subs.push(subData);
+  save();
+  closeModal();
 }
 
 function removeSub(subId) {
@@ -395,7 +422,7 @@ function updateFavicon(urlInput) {
 }
 
 function initCurrencySelector() {
-  const dropdown = document.getElementById("currency-selector");
+  const dropdown = document.getElementById("currency-select");
   if (!dropdown) return;
 
   let html = "";

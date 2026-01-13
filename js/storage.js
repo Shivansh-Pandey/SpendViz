@@ -54,7 +54,7 @@ function exportData() {
 
   const link = document.createElement("a");
   link.href = blobUrl;
-  link.download = "subgrid-backup-" + new Date().toISOString().split("T")[0] + ".json";
+  link.download = "spendviz-backup-" + new Date().toISOString().split("T")[0] + ".json";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

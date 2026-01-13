@@ -43,10 +43,12 @@ function openModalWithPreset(presetIdx) {
   const nameInput = document.getElementById("sub-name");
   const costInput = document.getElementById("sub-cost");
   const websiteInput = document.getElementById("sub-website");
+  const periodInput = document.getElementById("sub-period");
   
   if (nameInput) nameInput.value = preset.name;
   if (costInput) costInput.value = preset.price;
   if (websiteInput && preset.domain) websiteInput.value = preset.domain;
+  if (periodInput) periodInput.value = preset.cycle.toLowerCase();
 
   showModal();
 }
@@ -238,6 +240,17 @@ function closeAllModals() {
 const bankImportModal = document.getElementById("bank-import-modal");
 
 function openBankImport() {
+  // Reset to step 1
+  const step1 = document.getElementById("bank-step-1");
+  const step2 = document.getElementById("bank-step-2");
+  const step3 = document.getElementById("bank-step-3");
+  const csvInput = document.getElementById("bank-csv-input");
+  
+  if (step1) step1.classList.remove("hidden");
+  if (step2) step2.classList.add("hidden");
+  if (step3) step3.classList.add("hidden");
+  if (csvInput) csvInput.value = "";
+
   backdrop.classList.remove("hidden");
   bankImportModal.classList.remove("hidden");
   bankImportModal.classList.add("flex");
@@ -255,5 +268,6 @@ function closeBankImport() {
   setTimeout(function() {
     bankImportModal.classList.add("hidden");
     bankImportModal.classList.remove("flex");
+    backdrop.classList.add("hidden");
   }, 300);
 }
