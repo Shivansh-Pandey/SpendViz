@@ -6,6 +6,7 @@ let otherExpanded = false;
 
 // Parse CSV text into headers and rows
 function parseCSV(text) {
+
   const lines = text.trim().split(/\r?\n/);
   if (lines.length < 2) {
     return { headers: [], rows: [] };
@@ -277,27 +278,4 @@ function getRandomColor() {
   const colors = ["rose", "blue", "green", "purple", "orange", "teal", "indigo", "pink", "cyan"];
   return colors[Math.floor(Math.random() * colors.length)];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

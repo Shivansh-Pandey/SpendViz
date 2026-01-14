@@ -78,7 +78,7 @@
         </div>
       </div>
       <div class="h-2 w-full overflow-hidden rounded-full bg-slate-200">
-        <div id="progress-bar" class="h-full w-1/3 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-500 ease-out shadow-lg shadow-indigo-500/30"></div>
+        <div id="progress-bar" class="h-full w-1/3 rounded-full bg-gradient-to-r from-blue-500 via-teal-500 to-emerald-500 transition-all duration-500 ease-out shadow-lg shadow-blue-500/30"></div>
       </div>
     </header>
 
@@ -236,7 +236,7 @@
             <button
               id="view-beeswarm"
               onclick="setView('beeswarm')"
-              class="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 relative z-10 bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md"
+              class="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 relative z-10 text-slate-600 hover:text-slate-900"
             >
               <span class="iconify h-4 w-4" data-icon="ph:dots-six-bold"></span>
               Swarm
@@ -244,7 +244,7 @@
             <button
               id="view-treemap"
               onclick="setView('treemap')"
-              class="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 relative z-10 text-slate-600 hover:text-slate-900"
+              class="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 relative z-10 bg-gradient-to-r from-blue-500 to-teal-500 text-white shadow-md"
             >
               <span class="iconify h-4 w-4" data-icon="ph:grid-four-bold"></span>
               Grid
@@ -426,7 +426,6 @@
             >
             <select
               id="currency-select"
-              onchange="changeCurrency(this.value)"
               class="w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-slate-900 transition-colors focus:border-indigo-500 focus:outline-none"
             >
               <option value="USD">USD ($)</option>
@@ -438,6 +437,13 @@
               <option value="CAD">CAD (C$)</option>
             </select>
           </div>
+          <button
+            onclick="saveCurrency(document.getElementById('currency-select').value); closeSettings();"
+            class="w-full rounded-xl bg-gradient-to-r from-blue-500 to-teal-500 py-3 font-bold text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-xl hover:shadow-blue-500/50 active:scale-95"
+          >
+            <span class="iconify mr-2 inline h-5 w-5" data-icon="ph:check-bold"></span>
+            Save Currency
+          </button>
           <button
             onclick="exportData()"
             class="w-full rounded-xl border-2 border-indigo-200 bg-indigo-50 py-3 font-bold text-indigo-600 transition-all hover:bg-indigo-100 active:scale-95"

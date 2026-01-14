@@ -203,21 +203,19 @@ function goToStep(stepNum) {
 function setView(view) {
   currentView = view;
 
-  // Update toggle switch styles
+  // Update button styles
   const views = ["treemap", "beeswarm", "circlepack"];
-  const activeClasses = ["bg-white", "text-slate-900", "shadow-md", "font-semibold"];
-  const inactiveClasses = ["bg-transparent", "text-slate-600", "hover:text-slate-900", "font-medium"];
+  const activeClass = "bg-slate-900 text-white";
+  const inactiveClass = "bg-white text-slate-600";
 
   views.forEach(v => {
     const btn = document.getElementById("view-" + v);
     if (btn) {
-      // Remove all classes
-      btn.classList.remove(...activeClasses, ...inactiveClasses, "shadow-md");
-      
+      btn.classList.remove(...activeClass.split(" "), ...inactiveClass.split(" "));
       if (v === view) {
-        btn.classList.add(...activeClasses);
+        btn.classList.add(...activeClass.split(" "));
       } else {
-        btn.classList.add(...inactiveClasses);
+        btn.classList.add(...inactiveClass.split(" "));
       }
     }
   });
@@ -294,16 +292,10 @@ function renderList() {
 
 function renderPresets() {
   const grid = document.getElementById("presets-grid");
-  console.log("renderPresets called, grid element:", grid);
-  
-  if (!grid) {
-    console.error("presets-grid element not found!");
-    return;
-  }
+  if (!grid) return;
 
   // full list is overwhelming, just show common ones here
   const popular = presets.filter(p => p.popular);
-  console.log("Popular presets found:", popular.length, popular);
 
   let html = "";
   for (let i = 0; i < popular.length; i++) {
@@ -317,28 +309,7 @@ function renderPresets() {
     html += '<span class="text-[10px] font-semibold text-slate-600 truncate w-full text-center sm:text-xs">' + preset.name + '</span>';
     html += '</button>';
   }
-  
-  console.log("Setting grid innerHTML, html length:", html.length);
   grid.innerHTML = html;
-  console.log("Grid updated successfully");
-}
-
-function addSub(evt) {
-  evt.preventDefault();
-
-  const subData = {
-    id: Date.now().toString() + Math.random().toString(36).slice(2),
-    name: document.getElementById("sub-name").value,
-    price: parseFloat(document.getElementById("sub-cost").value),
-    currency: selectedCurrency,
-    cycle: document.getElementById("sub-period").value.charAt(0).toUpperCase() + document.getElementById("sub-period").value.slice(1),
-    url: document.getElementById("sub-website").value || "",
-    color: randColor().id
-  };
-
-  subs.push(subData);
-  save();
-  closeModal();
 }
 
 function removeSub(subId) {
@@ -422,7 +393,7 @@ function updateFavicon(urlInput) {
 }
 
 function initCurrencySelector() {
-  const dropdown = document.getElementById("currency-select");
+  const dropdown = document.getElementById("currency-selector");
   if (!dropdown) return;
 
   let html = "";
@@ -487,14 +458,10 @@ function handleFormSubmit(evt) {
   hideModal();
 }
 
-function changeCurrency(code) {
-  saveCurrency(code);
-}
-
 document.addEventListener("DOMContentLoaded", async () => {
   await window.initRates();
-  await loadCurrency();
   load();
+  loadCurrency();
   initColorPicker();
   initCurrencySelector();
   initFormCurrencySelector();
@@ -502,9 +469,3 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderList();
   document.getElementById("date").value = new Date().toISOString().split("T")[0];
 });
-
-
-
-
-
-
