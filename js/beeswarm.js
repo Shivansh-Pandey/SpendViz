@@ -9,6 +9,7 @@ class Beeswarm {
     this.isMobile = isMobile;
   }
 
+
   layout(items) {
     if (!items.length) return [];
 

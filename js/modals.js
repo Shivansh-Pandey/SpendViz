@@ -79,6 +79,32 @@ function closeSettings() {
   }, 300);
 }
 
+// Export modal functions
+const exportBackdrop = document.getElementById("modal-backdrop");
+const exportModal = document.getElementById("export-modal");
+
+function openExportModal() {
+  exportBackdrop.classList.remove("hidden");
+  exportModal.classList.remove("hidden");
+  exportModal.classList.add("flex");
+
+  requestAnimationFrame(function() {
+    exportBackdrop.classList.remove("opacity-0");
+    exportBackdrop.classList.add("opacity-100");
+  });
+}
+
+function closeExportModal() {
+  exportBackdrop.classList.add("opacity-0");
+  exportBackdrop.classList.remove("opacity-100");
+
+  setTimeout(function() {
+    exportBackdrop.classList.add("hidden");
+    exportModal.classList.add("hidden");
+    exportModal.classList.remove("flex");
+  }, 300);
+}
+
 let selectedCategory = null;
 
 const presetsBackdrop = document.getElementById("modal-backdrop");

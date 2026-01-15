@@ -222,32 +222,51 @@
       </div>
 
       <div id="step-2" class="step-panel">
-        <!-- View Toggle -->
-        <div class="mb-6 flex justify-center">
-          <div class="inline-flex rounded-2xl bg-slate-100 border border-slate-200 p-2 shadow-lg">
+        <!-- View Toggle and Action Buttons -->
+        <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div class="flex justify-center sm:justify-start">
+            <div class="inline-flex rounded-2xl bg-slate-100 border border-slate-200 p-2 shadow-lg">
+              <button
+                id="view-circlepack"
+                onclick="setView('circlepack')"
+                class="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 relative z-10 text-slate-600 hover:text-slate-900"
+              >
+                <span class="iconify h-4 w-4" data-icon="ph:circles-three-bold"></span>
+                Bubbles
+              </button>
+              <button
+                id="view-beeswarm"
+                onclick="setView('beeswarm')"
+                class="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 relative z-10 text-slate-600 hover:text-slate-900"
+              >
+                <span class="iconify h-4 w-4" data-icon="ph:dots-six-bold"></span>
+                Swarm
+              </button>
+              <button
+                id="view-treemap"
+                onclick="setView('treemap')"
+                class="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 relative z-10 bg-gradient-to-r from-blue-500 to-teal-500 text-white shadow-md"
+              >
+                <span class="iconify h-4 w-4" data-icon="ph:grid-four-bold"></span>
+                Grid
+              </button>
+            </div>
+          </div>
+          
+          <div class="flex gap-3 justify-center sm:justify-end">
             <button
-              id="view-circlepack"
-              onclick="setView('circlepack')"
-              class="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 relative z-10 text-slate-600 hover:text-slate-900"
+              onclick="goToStep(1)"
+              class="flex items-center gap-2 rounded-xl px-6 py-3 font-semibold text-slate-700 bg-white border-2 border-slate-200 shadow-lg transition-all hover:bg-slate-50 active:scale-95"
             >
-              <span class="iconify h-4 w-4" data-icon="ph:circles-three-bold"></span>
-              Bubbles
+              <span class="iconify h-5 w-5" data-icon="ph:arrow-left-bold"></span>
+              Back
             </button>
             <button
-              id="view-beeswarm"
-              onclick="setView('beeswarm')"
-              class="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 relative z-10 text-slate-600 hover:text-slate-900"
+              onclick="openExportModal()"
+              class="flex items-center gap-2 rounded-xl px-6 py-3 font-semibold bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30 transition-all hover:shadow-xl hover:shadow-emerald-500/40 active:scale-95"
             >
-              <span class="iconify h-4 w-4" data-icon="ph:dots-six-bold"></span>
-              Swarm
-            </button>
-            <button
-              id="view-treemap"
-              onclick="setView('treemap')"
-              class="flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-300 relative z-10 bg-gradient-to-r from-blue-500 to-teal-500 text-white shadow-md"
-            >
-              <span class="iconify h-4 w-4" data-icon="ph:grid-four-bold"></span>
-              Grid
+              <span class="iconify h-5 w-5" data-icon="ph:download-bold"></span>
+              Export
             </button>
           </div>
         </div>
@@ -290,31 +309,15 @@
           </div>
         </div>
 
-        <div class="pointer-events-none fixed bottom-0 left-0 z-10 w-full bg-gradient-to-t from-slate-50 via-slate-50 to-transparent px-6 pb-6 pt-8 lg:bottom-8 lg:bg-none lg:px-12 lg:pb-0 lg:pt-0">
-          <div class="mx-auto flex max-w-7xl flex-col gap-3 lg:flex-row lg:items-center lg:gap-4">
-            <div class="flex gap-3 lg:contents">
-              <button
-                onclick="openSettings()"
-                class="pointer-events-auto flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white border border-slate-200 text-slate-600 shadow-xl transition-all hover:text-slate-900 active:scale-95"
-                title="Settings"
-              >
-                <span class="iconify h-6 w-6" data-icon="ph:gear-bold"></span>
-              </button>
-              <button
-                onclick="goToStep(1)"
-                class="pointer-events-auto flex-1 rounded-2xl py-4 font-bold text-slate-700 bg-white border border-slate-200 shadow-xl transition-colors hover:bg-slate-50 active:scale-95"
-              >
-                Back
-              </button>
-              <button
-                onclick="exportAsImage()"
-                class="pointer-events-auto flex flex-1 items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 py-4 font-bold text-white shadow-2xl shadow-emerald-500/30 transition-all hover:shadow-emerald-500/50 active:scale-95"
-              >
-                <span class="iconify h-5 w-5" data-icon="ph:download-bold"></span>
-                Export Visual
-              </button>
-            </div>
-          </div>
+        <!-- Settings Button (floating) -->
+        <div class="fixed bottom-6 left-6 z-10 lg:bottom-8 lg:left-8">
+          <button
+            onclick="openSettings()"
+            class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white border-2 border-slate-200 text-slate-600 shadow-xl transition-all hover:text-slate-900 hover:shadow-2xl active:scale-95"
+            title="Settings"
+          >
+            <span class="iconify h-6 w-6" data-icon="ph:gear-bold"></span>
+          </button>
         </div>
       </div>
 
@@ -450,6 +453,43 @@
           >
             <span class="iconify mr-2 inline h-5 w-5" data-icon="ph:download-simple-bold"></span>
             Export Data (JSON)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export Options Modal -->
+    <div
+      id="export-modal"
+      class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+      aria-hidden="true"
+    >
+      <div
+        class="relative w-full max-w-md scale-95 transform rounded-3xl bg-white p-6 shadow-2xl transition-all sm:p-8"
+      >
+        <button
+          onclick="closeExportModal()"
+          class="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors hover:bg-slate-200 hover:text-slate-700"
+        >
+          <span class="iconify h-5 w-5" data-icon="ph:x-bold"></span>
+        </button>
+        <h2 class="mb-6 text-2xl font-black text-slate-900">Export Options</h2>
+        <div class="space-y-3">
+          <button
+            onclick="exportAsImage(); closeExportModal();"
+            class="w-full rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 py-4 font-bold text-white shadow-lg shadow-emerald-500/30 transition-all hover:shadow-xl hover:shadow-emerald-500/40 active:scale-95"
+          >
+            <span class="iconify mr-2 inline h-6 w-6" data-icon="ph:image-bold"></span>
+            Export as Image
+            <div class="mt-1 text-xs font-normal opacity-90">Save current visualization as PNG</div>
+          </button>
+          <button
+            onclick="exportData(); closeExportModal();"
+            class="w-full rounded-xl border-2 border-slate-200 bg-white py-4 font-bold text-slate-700 transition-all hover:bg-slate-50 active:scale-95"
+          >
+            <span class="iconify mr-2 inline h-6 w-6" data-icon="ph:file-json-bold"></span>
+            Export as JSON
+            <div class="mt-1 text-xs font-normal text-slate-600">Backup all subscription data</div>
           </button>
         </div>
       </div>
